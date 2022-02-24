@@ -5,6 +5,10 @@
 import 'package:flutter/material.dart';
 
 import 'src/basics/01_animated_container.dart';
+import 'src/basics/02_page_route_builder.dart';
+
+import 'src/misc/expand_card.dart';
+import 'src/misc/carousel.dart';
 
 void main() => runApp(const AnimationSamples());
 
@@ -29,6 +33,21 @@ final basicDemos = [
       name: 'AnimatedContainer',
       route: AnimatedContainerDemo.routeName,
       builder: (context) => const AnimatedContainerDemo()),
+  Demo(
+      name: 'PageRouteBuilder',
+      route: PageRouteBuilderDemo.routeName,
+      builder: (context) => const PageRouteBuilderDemo()),
+];
+
+final miscDemos = [
+  Demo(
+      name: 'Expandable Card',
+      route: ExpandCardDemo.routeName,
+      builder: (context) => const ExpandCardDemo()),
+  Demo(
+      name: 'Carousel',
+      route: CarouselDemo.routeName,
+      builder: (context) => CarouselDemo()),
 ];
 
 // Map<K, V>class
@@ -36,12 +55,16 @@ final basicDemos = [
 final basicDemoRoutes =
 Map.fromEntries(basicDemos.map((d) => MapEntry(d.route, d.builder)));
 
+final miscDemoRoutes =
+Map.fromEntries(miscDemos.map((d) => MapEntry(d.route, d.builder)));
+
 // routes 정의
 // MaterialApp 생성자에는 routes 를 정의할 수 있음
 // Map<String, WidgetBuilder> -> route + name 에서 경로를 만들어 builder 함수로 매핑
 // 해당 맵을 사용하여 onGenerateRoute callback 생
 final allRoutes = <String, WidgetBuilder>{
   ...basicDemoRoutes,
+  ...miscDemoRoutes,
 };
 
 // StatelessWidget -> 상태가 없는 widget
@@ -86,6 +109,8 @@ class HomePage extends StatelessWidget {
         children: [
           ListTile(title: Text('Basics', style: headerStyle)),
           ...basicDemos.map((d) => DemoTile(demo: d)),
+          ListTile(title: Text('Misc', style: headerStyle)),
+          ...miscDemos.map((d) => DemoTile(demo: d)),
         ],
       ),
     );

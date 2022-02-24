@@ -14,6 +14,11 @@ class AnimatedContainerDemo extends StatefulWidget {
   const AnimatedContainerDemo({Key? key}) : super(key: key);
   static String routeName = '/basics/01_animated_container';
 
+  // createState()
+  // State 클래스의 객 생성자
+  // 위젯트리의 지정된 위치에 위젯의 변경 가능한 state 를 생성
+  // 필수 오버라이드
+  // StatefulWidget 의 수명 동안 해당 메소드를 여러번 호출
   @override
   _AnimatedContainerDemoState createState() => _AnimatedContainerDemoState();
 }
@@ -23,6 +28,10 @@ class _AnimatedContainerDemoState extends State<AnimatedContainerDemo> {
   late double borderRadius;
   late double margin;
 
+  // initState()
+  // State 객체가 생성되면 호출
+  // 위젯이 최초로 생성되는 상황에서 호출
+  // 1번만 호출됨
   @override
   void initState() {
     super.initState();
@@ -31,6 +40,9 @@ class _AnimatedContainerDemoState extends State<AnimatedContainerDemo> {
     margin = generateMargin();
   }
 
+  // setState()
+  // State 객체의 상태가 변경되었음을 프레임워크에 알림
+  // 프레임워크가 변경을 감지하고 build() 호출 준비
   void change() {
     setState(() {
       color = generateColor();
@@ -66,7 +78,7 @@ class _AnimatedContainerDemoState extends State<AnimatedContainerDemo> {
                     color: color,
                     borderRadius: BorderRadius.circular(borderRadius),
                   ),
-                  duration: const Duration(milliseconds: 400),
+                  duration: const Duration(milliseconds: 100),
                 ),
               ),
             ),
